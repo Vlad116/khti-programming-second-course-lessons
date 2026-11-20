@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Todo · Занятие 10 · Автоматические тесты</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./script.js" defer></script>
+</head>
+<body>
+  <main class="app">
+    <p class="lesson">КНИТУ-КХТИ · Занятие 10 · Jest + Playwright</p>
+    <h1>Общий список задач</h1>
+    <p class="note">Учебное приложение: выбор имени не является входом по паролю или авторизацией.</p>
+
+    <section class="panel" aria-label="Выбор владельца">
+      <h2>Представьтесь</h2>
+      <div class="form-row">
+        <select id="owner-select" aria-label="Выберите пользователя"></select>
+        <button id="refresh-users" class="secondary" type="button">Обновить</button>
+      </div>
+      <form id="user-form" class="form-inline">
+        <label for="display-name">Или создайте учебного пользователя</label>
+        <div class="form-row">
+          <input id="display-name" maxlength="100" autocomplete="off" placeholder="Например, Мария" required>
+          <button type="submit">Представиться</button>
+        </div>
+      </form>
+    </section>
+
+    <form id="task-form" class="panel">
+      <h2>Новая задача</h2>
+      <label for="task-title">Название</label>
+      <div class="form-row">
+        <input id="task-title" maxlength="250" autocomplete="off" required>
+        <button type="submit">Добавить</button>
+      </div>
+      <fieldset>
+        <legend>Категории (можно несколько)</legend>
+        <div id="category-choices" class="checklist"></div>
+      </fieldset>
+    </form>
+
+    <div class="toolbar">
+      <button id="refresh-button" class="secondary" type="button">Обновить задачи</button>
+      <label class="filter-label" for="completed-filter">Показать:</label>
+      <select id="completed-filter">
+        <option value="all">Все</option>
+        <option value="false">Невыполненные</option>
+        <option value="true">Выполненные</option>
+      </select>
+    </div>
+    <p id="status" role="status" aria-live="polite"></p>
+    <p id="empty-message" class="empty-message" hidden>Пока задач нет.</p>
+    <ul id="task-list" aria-label="Список задач"></ul>
+    <p class="note">Данные сохраняются в PostgreSQL. `ownerId` связывает задачу с пользователем, но не доказывает его личность.</p>
+  </main>
+</body>
+</html>

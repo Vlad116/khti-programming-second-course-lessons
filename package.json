@@ -1,0 +1,44 @@
+{
+  "name": "todo-postgresql-lesson-10",
+  "version": "1.0.0",
+  "private": true,
+  "description": "КНИТУ-КХТИ: Jest unit/integration/API/contract tests + Playwright E2E, продолжение занятия 9",
+  "type": "module",
+  "engines": {
+    "node": ">=22.16.0"
+  },
+  "scripts": {
+    "start": "node --env-file=.env server.js",
+    "dev": "node --env-file=.env --watch server.js",
+    "migrate": "node --env-file=.env scripts/migrate.js",
+    "check-db": "node --env-file=.env scripts/check-db.js",
+    "demo:relations": "node --env-file=.env scripts/demo-relationships.js",
+    "demo:rollback": "node --env-file=.env scripts/demo-rollback.js",
+    "demo:savepoint": "node --env-file=.env scripts/demo-savepoint.js",
+    "demo:api": "node --env-file=.env scripts/verify-api.js",
+    "migrate:priority": "node --env-file=.env ./node_modules/sequelize-cli/lib/sequelize db:migrate --config db/cli-config.cjs --migrations-path db/migrations",
+    "migrate:undo-priority": "node --env-file=.env ./node_modules/sequelize-cli/lib/sequelize db:migrate:undo --config db/cli-config.cjs --migrations-path db/migrations",
+    "demo:errors": "node --env-file=.env scripts/demo-errors.js",
+    "demo:orm8": "node --env-file=.env scripts/demo-orm8.js",
+    "test": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js",
+    "test:unit": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js tests/jest/unit",
+    "test:api": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js tests/jest/api",
+    "test:contract": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js tests/jest/contract",
+    "test:db": "node --env-file=.env.test --experimental-vm-modules ./node_modules/jest/bin/jest.js --config jest.db.config.js --runInBand",
+    "test:e2e": "playwright test",
+    "test:e2e:headed": "playwright test --headed",
+    "test:old": "node --test tests/*.test.js",
+    "test:coverage": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js --coverage"
+  },
+  "dependencies": {
+    "express": "5.1.0",
+    "pg": "8.23.1",
+    "sequelize": "6.37.7"
+  },
+  "devDependencies": {
+    "sequelize-cli": "6.6.3",
+    "jest": "30.2.0",
+    "supertest": "7.3.2",
+    "@playwright/test": "1.56.1"
+  }
+}

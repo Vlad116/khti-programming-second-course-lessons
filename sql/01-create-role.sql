@@ -1,0 +1,1 @@
+CREATE ROLE todo_app WITH LOGIN PASSWORD 'Lesson6Local_2026!';
