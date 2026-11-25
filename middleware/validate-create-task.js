@@ -4,7 +4,7 @@ const priorities = new Set(['low', 'medium', 'high']);
 
 export function validateCreateTask(req, res, next) {
   const title = req.body?.title;
-  const priority = req.body?.priority ?? 'medium';
+  const priority = req.body?.priority;
 
   if (typeof title !== 'string' || !title.trim() || title.trim().length > 250) {
     return next(new AppError(400, 'INVALID_TITLE',
