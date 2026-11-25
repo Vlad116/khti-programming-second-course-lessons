@@ -1,0 +1,36 @@
+name: todo_app_example
+
+services:
+  db:
+    image: postgres:18
+    environment:
+      POSTGRES_DB: todo_course
+      POSTGRES_USER: todo_app
+      POSTGRES_PASSWORD: Lesson6Local_2026!
+      PGDATA: /var/lib/postgresql/18/docker
+    volumes:
+      - todo_pg_data:/var/lib/postgresql/18/docker
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -h 127.0.0.1 -U $$POSTGRES_USER -d $$POSTGRES_DB" ]
+      interval: 10s
+      timeout: 30s
+      retries: 10
+    ports:
+      - "5432:5432"
+  api:
+    build: .
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      PORT: "3000"
+      PGHOST: db
+      PGPORT: "5432"
+      PGDATABASE: todo_course
+      PGUSER: todo_app
+      PGPASSWORD: Lesson6Local_2026!
+      ORM_LOG_SQL: "true"
+    ports:
+      - "3000:3000"
+volumes:
+  todo_pg_data:

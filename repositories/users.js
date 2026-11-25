@@ -13,8 +13,8 @@ export default function createUsersRepository(pool) {
     const id = randomUUID();
     // legacy_student_id остаётся для совместимости со старым студентским API.
     const result = await pool.query(`
-      INSERT INTO users (id, display_name, legacy_student_id)
-      VALUES ($1, $2, $1)
+      INSERT INTO users (id, display_name)
+      VALUES ($1, $2)
       RETURNING id, display_name AS "displayName"
     `, [id, displayName]);
     return result.rows[0];

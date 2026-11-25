@@ -14,6 +14,7 @@ const port = Number(process.env.PORT ?? 3000);
 
 async function start() {
   await sequelize.authenticate();
+//   await sequelize.sync()
   const columns = await sequelize.getQueryInterface().describeTable('tasks');
   if (!columns.priority) {
     throw new Error('Нет tasks.priority. Примените SQL ИЛИ Sequelize-миграцию занятия 9.');
